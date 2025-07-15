@@ -1,4 +1,4 @@
-  * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -12,6 +12,7 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
+            color-scheme: light dark;
         }
         
         .game-container {
@@ -36,9 +37,14 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         
+        .score-container {
+            display: flex;
+            gap: 20px;
+        }
+        
         .score {
             color: #fff;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
         }
         
@@ -82,6 +88,7 @@
             background: linear-gradient(45deg, #00f2fe, #4facfe);
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(79, 172, 254, 0.8);
+            transition: transform 0.1s ease;
         }
         
         .snake-head {
@@ -121,8 +128,15 @@
         }
         
         .final-score {
-            font-size: 2rem;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .high-score {
+            font-size: 1.5rem;
             margin-bottom: 30px;
+            color: #4facfe;
+            font-weight: bold;
         }
         
         .mobile-controls {
@@ -151,10 +165,27 @@
             color: white;
             font-size: 24px;
             cursor: pointer;
+            touch-action: manipulation;
         }
         
         .mobile-btn:active {
             background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .difficulty-selector {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .difficulty-btn {
+            padding: 5px 10px;
+            font-size: 0.9rem;
+        }
+
+        .active-difficulty {
+            background-color: rgba(79, 172, 254, 0.5);
+            box-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
         }
 
         @media (max-width: 768px) {
@@ -164,6 +195,20 @@
             
             .game-board {
                 height: 80vmin;
+            }
+
+            .score {
+                font-size: 1rem;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .score-container {
+                width: 100%;
+                justify-content: space-between;
             }
         }
         
@@ -190,3 +235,71 @@
             margin-top: 10px;
             font-size: 0.9rem;
         }
+
+        /* Dark/Light mode toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* AI snake */
+        .ai-snake {
+            position: absolute;
+            background: linear-gradient(45deg, #a8ff78, #78ffd6);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(168, 255, 120, 0.8);
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        .ai-snake-head {
+            background: linear-gradient(45deg, #56ab2f, #a8e063);
+            box-shadow: 0 0 15px rgba(86, 171, 47, 0.9);
+        }
+
+        /* Light mode styles */
+        @media (prefers-color-scheme: light) {
+            body {
+                background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            }
+
+            .game-board, .header {
+                background-color: rgba(255, 255, 255, 0.7);
+                border-color: rgba(0, 0, 0, 0.1);
+            }
+
+            .score, #instructions {
+                color: #333;
+            }
+
+            .btn {
+                color: #333;
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+
+            .btn:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+
+            .mobile-btn {
+                color: #333;
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+
+            .mobile-btn:active {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+    
